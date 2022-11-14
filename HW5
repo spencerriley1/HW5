@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+import random
+from scipy import stats
+
+data=pd.read_csv("ckconcentration.csv")
+List_concentration= data['CKConcentration'].values.tolist()
+
+
+L=[]
+n=len(List_concentration)
+L.append(n)
+samples=[]
+def gen_bootstrap():
+    for i in range(10):
+        dat=np.random.choice(List_concentration, size=len(L), replace=True)
+        samples.append(dat)
+        
+gen_bootstrap()
+
+
+
+
+def trim_mean():
+    stats.trim_mean(List_concentration, .1)
